@@ -6,13 +6,13 @@ import gdown
 import datetime
 
 # ======================== DEFINE PATHS ===========================
-# GitHub repository base URL
-GITHUB_REPO = "https://github.com/GOUFANG2021/TarCalPre/raw/main"
+# Updated GitHub repository base URL
+GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
-# File download URLs from GitHub
-MODEL_PY_URL = f"{GITHUB_REPO}/CaTarModel.py"
+# File download URLs from new GitHub repository
+MODEL_PY_URL = f"{GITHUB_REPO}/TarCalPre_app.py"
 DATA_TEMPLATE_URL = f"{GITHUB_REPO}/Wine%20Data.xlsx"
-INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"  # New: Image URL
+INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"  # Updated image path
 
 # ======================== FUNCTION TO DOWNLOAD FILE FROM GITHUB ===========================
 def download_from_github(url, output_path):
@@ -26,7 +26,7 @@ def download_from_github(url, output_path):
 # ======================== FUNCTION TO RUN MODEL DIRECTLY FROM GITHUB ===========================
 def run_model_from_github(model_url, data_path, simulation_id):
     """Download the model from GitHub and execute it with the uploaded data file."""
-    model_path = "CaTarModel.py"  # Temporary local path for execution
+    model_path = "TarCalPre_app.py"  # Updated model filename
 
     # Download model file from GitHub
     download_result = download_from_github(model_url, model_path)
