@@ -119,6 +119,14 @@ with col2:
     if st.session_state.simulation_results:
         for result in st.session_state.simulation_results:
             st.write(result)
+            st.markdown(
+    f"""
+    <div style="font-size:20px; font-weight:bold; padding:10px; border-left:5px solid #4CAF50; margin-bottom:10px;">
+        {result}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
     # INTERPRETATION SECTION
     st.subheader("📌 Interpretation")
