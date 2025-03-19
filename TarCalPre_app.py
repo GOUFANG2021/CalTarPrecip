@@ -122,7 +122,7 @@ st.write("""
 It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
 It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
 """)
-
+with col2:
 # DISPLAY IMAGE FROM GITHUB WITH CAPTION ABOVE
 indicator_path = "indicator.png"
 gdown.download(INDICATOR_IMAGE_URL, indicator_path, quiet=False)
