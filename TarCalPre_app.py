@@ -123,15 +123,26 @@ It is recommended that wines with a supersaturation ratio in the high-risk range
 It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
 """)
 with col2:
-# DISPLAY IMAGE FROM GITHUB WITH CAPTION ABOVE
-indicator_path = "indicator.png"
-gdown.download(INDICATOR_IMAGE_URL, indicator_path, quiet=False)
+    # DISPLAY RESULTS FOR ALL SIMULATIONS
+    st.subheader("📊 Simulation Results")
+    for session_name, results in st.session_state.simulation_results.items():
+        with st.expander(session_name):
+            st.text(results)  
 
-if os.path.exists(indicator_path):
-    st.markdown("### Supersaturation Risk Indicator")  # Caption above the image
-    st.image(indicator_path)
-      
-# ADDITIONAL WARNING MESSAGE
+    # UPDATED INTERPRETATION SECTION
+    st.subheader("📌 Interpretation")
+    st.write("""
+    It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
+    It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
+    """)
+
+    # DISPLAY IMAGE FROM GITHUB
+    indicator_path = "indicator.png"
+    gdown.download(INDICATOR_IMAGE_URL, indicator_path, quiet=False)
+    if os.path.exists(indicator_path):
+        st.image(indicator_path, caption=" ")
+
+    # ADDITIONAL WARNING MESSAGE
     st.warning(
         "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
         "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
