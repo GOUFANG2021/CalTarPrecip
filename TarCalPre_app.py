@@ -99,7 +99,7 @@ with col1:
             st.session_state.simulation_count += 1
 
             # Generate a unique simulation ID
-            simulation_id = f"Simulation {st.session_state.simulation_count} for data file ({st.session_state.uploaded_data.name})"
+            simulation_id = f"Simulation {st.session_state.simulation_count} for {st.session_state.uploaded_data.name}"
 
             # Save uploaded file temporarily
             uploaded_file_path = "Wine Data.xlsx"
