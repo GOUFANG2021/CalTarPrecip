@@ -6,13 +6,12 @@ import gdown
 import datetime
 
 # ======================== DEFINE PATHS ===========================
-# Updated GitHub repository base URL
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
 # File download URLs from new GitHub repository
 MODEL_PY_URL = f"{GITHUB_REPO}/CaTar_Model.py"
 DATA_TEMPLATE_URL = f"{GITHUB_REPO}/Wine%20Data.xlsx"
-INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"  # Updated image path
+INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"
 
 # ======================== FUNCTION TO DOWNLOAD FILE FROM GITHUB ===========================
 def download_from_github(url, output_path):
@@ -26,7 +25,7 @@ def download_from_github(url, output_path):
 # ======================== FUNCTION TO RUN MODEL DIRECTLY FROM GITHUB ===========================
 def run_model_from_github(model_url, data_path, simulation_id):
     """Download the model from GitHub and execute it with the uploaded data file."""
-    model_path = "CaTar_Model.py"  # Updated model filename
+    model_path = "CaTar_Model.py"
 
     # Download model file from GitHub
     download_result = download_from_github(model_url, model_path)
@@ -37,7 +36,7 @@ def run_model_from_github(model_url, data_path, simulation_id):
     # Run the model
     try:
         process = subprocess.Popen(
-            [python_executable, model_path, data_path],  # Use absolute path to Python
+            [python_executable, model_path, data_path], 
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
@@ -47,7 +46,7 @@ def run_model_from_github(model_url, data_path, simulation_id):
         if error:
             return f"❌ Model execution failed: {error}"
         
-        return f"✅ Simulation {simulation_id} completed successfully!\n\n{output}"
+        return f"✅ {simulation_id} completed successfully!\n\n{output}"
     except Exception as e:
         return f"❌ Error running model: {e}"
 
@@ -60,22 +59,23 @@ col1, col2 = st.columns([1, 1])
 
 # Ensure session state variables exist
 if "simulation_results" not in st.session_state:
-    st.session_state.simulation_results = {}  # Keep previous results
+    st.session_state.simulation_results = []  # Store results as a list
 if "uploaded_data" not in st.session_state:
     st.session_state.uploaded_data = None
+if "simulation_count" not in st.session_state:
+    st.session_state.simulation_count = 0  # Count the number of simulations
 
 with col1:
     # STEP 1: DOWNLOAD TEMPLATE
     st.subheader("Step 1: Download the data format and enter your wine information in the input sheet.")
     
-    template_path = "Wine Data.xlsx"  # Temporary path for execution
+    template_path = "Wine Data.xlsx"
     download_result_template = download_from_github(DATA_TEMPLATE_URL, template_path)
 
     # Provide download button
     if os.path.exists(template_path):
         with open(template_path, "rb") as f:
             st.download_button("📥 Download Data Format", f, file_name="Wine Data.xlsx")
-           # st.success(download_result_template)  # Show success message
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload Your Modified Wine Data (Excel)")
@@ -84,6 +84,7 @@ with col1:
     if uploaded_file:
         st.session_state.uploaded_data = uploaded_file  
         st.success(f"✅ Uploaded: {uploaded_file.name}")
+        st.info("🔄 Please delete the current data to upload the next data file.")
 
     # STEP 3: RUN MODEL
     st.subheader("Step 3: Run Model")    
@@ -92,10 +93,13 @@ with col1:
             st.error("⚠️ Please upload a wine data file before running the model.")
         else:
             # Show processing message
-            st.info("⏳ The simulation can take a few minutes to solve for some wines. It will always stop by itself when finished.")
+            st.info("⏳ The simulation can take a few minutes. It will always stop by itself when finished.")
 
-            # Generate a unique simulation ID using timestamp
-            simulation_id = f"Simulation_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            # Increment simulation count
+            st.session_state.simulation_count += 1
+
+            # Generate a unique simulation ID
+            simulation_id = f"Simulation {st.session_state.simulation_count} for data file ({st.session_state.uploaded_data.name})"
 
             # Save uploaded file temporarily
             uploaded_file_path = "Wine Data.xlsx"
@@ -105,18 +109,18 @@ with col1:
             # Run model from GitHub
             results = run_model_from_github(MODEL_PY_URL, uploaded_file_path, simulation_id)
 
-            # Store results with unique identifier
-            st.session_state.simulation_results[simulation_id] = results  
+            # Store results
+            st.session_state.simulation_results.append(f"### {simulation_id}\n{results}\n")
             st.success(f"✅ {simulation_id} completed! Check results on the right.")
 
 with col2:
     # DISPLAY RESULTS FOR ALL SIMULATIONS
     st.subheader("📊 Simulation Results")
-    for session_name, results in st.session_state.simulation_results.items():
-        with st.expander(session_name):
-            st.text(results)  
+    if st.session_state.simulation_results:
+        for result in st.session_state.simulation_results:
+            st.write(result)
 
-    # UPDATED INTERPRETATION SECTION
+    # INTERPRETATION SECTION
     st.subheader("📌 Interpretation")
     st.write("""
     It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
@@ -129,7 +133,7 @@ with col2:
     if os.path.exists(indicator_path):
         st.image(indicator_path, caption=" ")
 
-    # ADDITIONAL WARNING MESSAGE
+    # WARNING MESSAGE
     st.warning(
         "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
         "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
