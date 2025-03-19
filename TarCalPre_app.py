@@ -12,13 +12,14 @@ GITHUB_REPO = "https://github.com/GOUFANG2021/Calcium-tartrate-model/raw/main"
 # File download URLs from GitHub
 MODEL_PY_URL = f"{GITHUB_REPO}/CaTarModel.py"
 DATA_TEMPLATE_URL = f"{GITHUB_REPO}/Wine%20Data.xlsx"
+INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"  # New: Image URL
 
 # ======================== FUNCTION TO DOWNLOAD FILE FROM GITHUB ===========================
 def download_from_github(url, output_path):
     """Download a file from GitHub repository."""
     try:
         gdown.download(url, output_path, quiet=False)
-        return f"✅ Downloaded {os.path.basename(output_path)}"
+        return f"✅ The data has been downloaded successfully!"
     except Exception as e:
         return f"❌ Failed to download {os.path.basename(output_path)}: {e}"
 
@@ -50,7 +51,6 @@ def run_model_from_github(model_url, data_path, simulation_id):
     except Exception as e:
         return f"❌ Error running model: {e}"
 
-
 # ======================== STREAMLIT UI ===========================
 st.set_page_config(layout="wide")  
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
@@ -75,9 +75,7 @@ with col1:
     if os.path.exists(template_path):
         with open(template_path, "rb") as f:
             st.download_button("📥 Download Data Format", f, file_name="Wine Data.xlsx")
-
-    # Show download status message
-    st.write(download_result_template)
+            st.success(download_result_template)  # Show success message
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload Your Modified Wine Data (Excel)")
@@ -93,6 +91,9 @@ with col1:
         if st.session_state.uploaded_data is None:
             st.error("⚠️ Please upload a wine data file before running the model.")
         else:
+            # Show processing message
+            st.info("⏳ The simulation can take a few minutes to solve for some wines. It will always stop by itself when finished.")
+
             # Generate a unique simulation ID using timestamp
             simulation_id = f"Simulation_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
@@ -115,10 +116,21 @@ with col2:
         with st.expander(session_name):
             st.text(results)  
 
-    # ALWAYS SHOW INTERPRETATION TEXT
+    # UPDATED INTERPRETATION SECTION
     st.subheader("📌 Interpretation")
-    st.write("If the supersaturation ratio > 1, there is a high risk of calcium tartrate precipitation.")
+    st.write("""
+    It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
+    It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
+    """)
+
+    # DISPLAY IMAGE FROM GITHUB
+    indicator_path = "indicator.png"
+    gdown.download(INDICATOR_IMAGE_URL, indicator_path, quiet=False)
+    if os.path.exists(indicator_path):
+        st.image(indicator_path, caption="Supersaturation Risk Indicator")
 
     # ADDITIONAL WARNING MESSAGE
     st.warning(
-        "⚠️ The model may not find a solution if the input data falls outside the simulation range. If this occurs, please delete the uploaded Excel file and upload a new one with the same format."    )
+        "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
+        "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
+    )
