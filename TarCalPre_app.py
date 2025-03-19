@@ -117,12 +117,11 @@ with col2:
             st.text(results)  
 
     # UPDATED INTERPRETATION SECTION
-st.subheader("📌 Interpretation")
-st.write("""
-It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
-It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
-""")
-
+    st.subheader("📌 Interpretation")
+    st.write("""
+    It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
+    It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
+    """)
 
     # DISPLAY IMAGE FROM GITHUB
     indicator_path = "indicator.png"
