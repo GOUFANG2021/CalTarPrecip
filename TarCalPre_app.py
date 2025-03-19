@@ -7,7 +7,7 @@ import datetime
 
 # ======================== DEFINE PATHS ===========================
 # GitHub repository base URL
-GITHUB_REPO = "https://github.com/GOUFANG2021/Calcium-tartrate-model/raw/main"
+GITHUB_REPO = "https://github.com/GOUFANG2021/TarCalPre/raw/main"
 
 # File download URLs from GitHub
 MODEL_PY_URL = f"{GITHUB_REPO}/CaTarModel.py"
