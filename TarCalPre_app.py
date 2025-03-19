@@ -26,7 +26,7 @@ def download_from_github(url, output_path):
 # ======================== FUNCTION TO RUN MODEL DIRECTLY FROM GITHUB ===========================
 def run_model_from_github(model_url, data_path, simulation_id):
     """Download the model from GitHub and execute it with the uploaded data file."""
-    model_path = "TarCalPre_app.py"  # Updated model filename
+    model_path = "CaTar_Model.py"  # Updated model filename
 
     # Download model file from GitHub
     download_result = download_from_github(model_url, model_path)
@@ -75,7 +75,7 @@ with col1:
     if os.path.exists(template_path):
         with open(template_path, "rb") as f:
             st.download_button("📥 Download Data Format", f, file_name="Wine Data.xlsx")
-            st.success(download_result_template)  # Show success message
+           # st.success(download_result_template)  # Show success message
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload Your Modified Wine Data (Excel)")
