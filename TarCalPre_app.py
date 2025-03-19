@@ -10,7 +10,7 @@ import datetime
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
 # File download URLs from new GitHub repository
-MODEL_PY_URL = f"{GITHUB_REPO}/TarCalPre_app.py"
+MODEL_PY_URL = f"{GITHUB_REPO}/CaTar_Model.py"
 DATA_TEMPLATE_URL = f"{GITHUB_REPO}/Wine%20Data.xlsx"
 INDICATOR_IMAGE_URL = f"{GITHUB_REPO}/indicator.png"  # Updated image path
 
