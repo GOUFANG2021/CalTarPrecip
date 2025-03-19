@@ -84,7 +84,7 @@ with col1:
     if uploaded_file:
         st.session_state.uploaded_data = uploaded_file  
         st.success(f"✅ Uploaded: {uploaded_file.name}")
-        st.info("🔄 Please delete the current data to upload the next data file.")
+     #   st.info("🔄 Please delete the current data to upload the next data file.")
 
     # STEP 3: RUN MODEL
     st.subheader("Step 3: Run Model")    
