@@ -67,7 +67,7 @@ if "simulation_count" not in st.session_state:
 
 with col1:
     # STEP 1: DOWNLOAD TEMPLATE
-     st.subheader("Step 1: Download the data format and enter your wine information in the input sheet.")
+     st.subheader("Step 1: Download the data format and enter your wine information in the input sheet.", unsafe_allow_html=True)
     
 
     template_path = "Wine Data.xlsx"
