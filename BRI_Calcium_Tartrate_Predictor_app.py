@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <style>
-        /* Completely remove Streamlit's anchor links */
+        /* Hide Streamlit's anchor links */
         .stMarkdown a.anchor-link {
             display: none !important;
             visibility: hidden !important;
@@ -27,9 +27,17 @@ st.markdown(
             position: relative;
         }
     </style>
+
+    <script>
+        // Remove Streamlit's anchor links from the DOM
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("a.anchor-link").forEach(el => el.remove());
+        });
+    </script>
     """,
     unsafe_allow_html=True
 )
+
 
 # ======================== DEFINE PATHS ===========================
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
@@ -103,7 +111,7 @@ with col1:
             st.download_button("📥 Download Data Format", f, file_name="Wine Data.xlsx")
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
-    st.subheader("Step 2: Upload Your Modified Wine Data (Excel)")
+    st.subheader("Step 2: Upload your wine data")
     uploaded_file = st.file_uploader("📤 Browse files to upload Your Wine Data (Excel)", type=["xlsx"])
 
     if uploaded_file:
