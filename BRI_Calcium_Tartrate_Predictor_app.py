@@ -4,6 +4,10 @@ import os
 import subprocess
 import gdown
 import datetime
+
+# ======================== 📌 SET PAGE CONFIGURATION FIRST ===========================
+st.set_page_config(layout="wide")
+
 # ======================== 🔧 REMOVE HOVER LINK ICONS ===========================
 st.markdown(
     """
@@ -64,7 +68,6 @@ def run_model_from_github(model_url, data_path, simulation_id):
         return f"❌ Error running model: {e}"
 
 # ======================== STREAMLIT UI ===========================
-st.set_page_config(layout="wide")  
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
 
 # Create two columns
