@@ -5,40 +5,6 @@ import subprocess
 import gdown
 import datetime
 
-# ======================== 📌 SET PAGE CONFIGURATION FIRST ===========================
-st.set_page_config(layout="wide")
-
-# ======================== 🔧 REMOVE HOVER LINK ICONS ===========================
-st.markdown(
-    """
-    <style>
-        /* Hide Streamlit's anchor links */
-        .stMarkdown a.anchor-link {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            width: 0 !important;
-        }
-
-        /* Ensure headers are untouched */
-        h1, h2, h3 {
-            position: relative;
-        }
-    </style>
-
-    <script>
-        // Remove Streamlit's anchor links from the DOM
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll("a.anchor-link").forEach(el => el.remove());
-        });
-    </script>
-    """,
-    unsafe_allow_html=True
-)
-
-
 # ======================== DEFINE PATHS ===========================
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
@@ -121,8 +87,8 @@ with col1:
      #   st.info("🔄 Please delete the current data to upload the next data file.")
 
     # STEP 3: RUN MODEL
-    st.subheader("Step 3: Run Model")    
-    if st.button("🚀 Run Model"):
+    st.subheader("Step 3: Run model")    
+    if st.button("🚀 Run model"):
         if st.session_state.uploaded_data is None:
             st.error("⚠️ Please upload a wine data file before running the model.")
         else:
@@ -149,7 +115,7 @@ with col1:
 
 with col2:
     # DISPLAY RESULTS FOR ALL SIMULATIONS
-    st.subheader("📊 Simulation Results")
+    st.subheader("📊 Simulation results")
     if st.session_state.simulation_results:
         for result in st.session_state.simulation_results:
             st.write(result)
