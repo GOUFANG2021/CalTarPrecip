@@ -68,7 +68,7 @@ if "simulation_count" not in st.session_state:
 
 with col1:
     # STEP 1: DOWNLOAD TEMPLATE
-    st.subheader("Step 1: Download the Calcium Tartrate Precipitation Predictor template and enter your wine data")
+    st.subheader("Step 1: Download the data template and enter your wine data")
     
     template_path = "Wine Data.xlsx"
     download_result_template = download_from_github(DATA_TEMPLATE_URL, template_path)
@@ -76,7 +76,7 @@ with col1:
     # Provide download button
     if os.path.exists(template_path):
         with open(template_path, "rb") as f:
-            st.download_button("📥 Download Data Format", f, file_name="Wine Data.xlsx")
+            st.download_button("📥 Download the template", f, file_name="Wine Data.xlsx")
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload your wine data")
