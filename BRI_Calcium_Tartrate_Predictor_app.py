@@ -13,10 +13,15 @@ st.markdown(
     """
     <style>
         /* Hide Streamlit auto-generated anchor links */
-        h1:hover a.anchor-link, 
-        h2:hover a.anchor-link, 
-        h3:hover a.anchor-link {
+        h1 a.anchor-link, 
+        h2 a.anchor-link, 
+        h3 a.anchor-link {
             display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            width: 0 !important;
         }
     </style>
     """,
