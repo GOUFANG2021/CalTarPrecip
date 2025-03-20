@@ -4,7 +4,20 @@ import os
 import subprocess
 import gdown
 import datetime
-
+# ======================== 🔧 REMOVE HOVER LINK ICONS ===========================
+st.markdown(
+    """
+    <style>
+        /* Hide Streamlit auto-generated anchor links */
+        h1:hover a.anchor-link, 
+        h2:hover a.anchor-link, 
+        h3:hover a.anchor-link {
+            display: none !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # ======================== DEFINE PATHS ===========================
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
