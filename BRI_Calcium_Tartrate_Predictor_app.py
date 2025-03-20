@@ -12,10 +12,8 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <style>
-        /* Hide Streamlit auto-generated anchor links */
-        h1 a.anchor-link, 
-        h2 a.anchor-link, 
-        h3 a.anchor-link {
+        /* Completely remove Streamlit's anchor links */
+        .stMarkdown a.anchor-link {
             display: none !important;
             visibility: hidden !important;
             pointer-events: none !important;
@@ -23,10 +21,16 @@ st.markdown(
             height: 0 !important;
             width: 0 !important;
         }
+
+        /* Ensure headers are untouched */
+        h1, h2, h3 {
+            position: relative;
+        }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 # ======================== DEFINE PATHS ===========================
 GITHUB_REPO = "https://github.com/GOUFANG2021/CalTarPrecip/raw/main"
 
@@ -88,7 +92,7 @@ if "simulation_count" not in st.session_state:
 
 with col1:
     # STEP 1: DOWNLOAD TEMPLATE
-    st.markdown("### Step 1: Download the data format and enter your wine information in the input sheet.", unsafe_allow_html=True)
+    st.markdown("### Step 1: Download the Calcium Tartrate Precipitation Predictor template and enter your wine data.", unsafe_allow_html=True)
 
     template_path = "Wine Data.xlsx"
     download_result_template = download_from_github(DATA_TEMPLATE_URL, template_path)
