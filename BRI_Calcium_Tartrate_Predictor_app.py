@@ -53,7 +53,10 @@ def run_model_from_github(model_url, data_path, simulation_id):
 # ======================== STREAMLIT UI ===========================
 st.set_page_config(layout="wide")  
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
-
+ st.write("""
+    It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
+    It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
+    """)
 
 # Create two columns
 col1, col2 = st.columns([1, 1])
