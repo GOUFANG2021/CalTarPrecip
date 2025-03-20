@@ -54,8 +54,9 @@ def run_model_from_github(model_url, data_path, simulation_id):
 st.set_page_config(layout="wide")  
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
 st.write("""
-    It is recommended that wines with a supersaturation ratio in the high-risk range should be treated to prevent calcium tartrate formation. 
-    It is possible for medium-risk wines to form calcium tartrate, but most wines in this range will not require treatment.
+  The calcium tartrate predictor model assists winemakers in evaluating the risk of calcium tartrate precipitation in their wines. It utilizes a streamlined set of inputs—namely pH, ethanol, calcium, tartaric acid, malic acid, and lactic acid levels—to calculate the supersaturation ratio, which reflects the chances of crystal formation.
+
+To use the model, download the data template, enter your wine’s parameters, and run the model to determine the supersaturation ratio. Additionally, we provide a reference table to help you understand the risk levels associated with the ratio, supporting your efforts to prevent unwanted precipitates in wine.
     """)
 
 # Create two columns
