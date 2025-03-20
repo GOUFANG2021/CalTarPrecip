@@ -51,7 +51,9 @@ def run_model_from_github(model_url, data_path, simulation_id):
         return f"❌ Error running model: {e}"
 
 # ======================== STREAMLIT UI ===========================
+st.set_page_config(layout="wide")  
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
+
 
 # Create two columns
 col1, col2 = st.columns([1, 1])
@@ -66,9 +68,8 @@ if "simulation_count" not in st.session_state:
 
 with col1:
     # STEP 1: DOWNLOAD TEMPLATE
-    #st.markdown("### Step 1: Download the Calcium Tartrate Precipitation Predictor template and enter your wine data.", unsafe_allow_html=True)
-    st.markdown("<h3 style='margin-bottom: 10px;'>Step 1: Download the Calcium Tartrate Precipitation Predictor template and enter your wine data.</h3>", unsafe_allow_html=True)
-
+    st.subheader("Step 1: Download the Calcium Tartrate Precipitation Predictor template and enter your wine data")
+    
     template_path = "Wine Data.xlsx"
     download_result_template = download_from_github(DATA_TEMPLATE_URL, template_path)
 
