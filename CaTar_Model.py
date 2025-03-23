@@ -959,12 +959,12 @@ else:
     # print(df_1.to_string(index=False))
     
 if df_1['Convergence Status'].iloc[0] == 'Converged':
-    print('A solution was found')
+    print('A solution was found. Supersaturation ratio: ' 
+          + str(round(df_1['Supersaturation Ratio'].iloc[0], 1)))
+    pass
 else: 
-    print('A solution could not be found and the results may be inaccurate.')
-print('Supersaturation Ratio: ' + str(round(df_1['Supersaturation Ratio'].iloc[0], 1)))
-
-    
+    print('A solution could not be found and the results may be inaccurate. Supersaturation ratio: ' 
+          + str(round(df_1['Supersaturation Ratio'].iloc[0], 1)))
 # ##############################################################################
 # # Precipitation over time was added in as an example of how this was
 # # implemented in other codes. This has just been added to the end for a single
@@ -1087,4 +1087,3 @@ print('Supersaturation Ratio: ' + str(round(df_1['Supersaturation Ratio'].iloc[0
 # plt.xticks(fontsize=9)
 # plt.yticks(fontsize=9)
 # plt.ylim(0, 100)
-
