@@ -121,14 +121,15 @@ with col1:
 with col2:
     # DISPLAY RESULTS FOR ALL SIMULATIONS
     st.subheader("📊 Simulation results")
+     st.warning(
+        "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
+        "If this occurs, please delete the uploaded Excel file and upload a new one with alternative data with the same format."
+    )
     if st.session_state.simulation_results:
         for result in st.session_state.simulation_results:
             st.write(result)
     # WARNING MESSAGE
-    st.warning(
-        "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
-        "If this occurs, please delete the uploaded Excel file and upload a new one with alternative data with the same format."
-    )
+   
              
     # INTERPRETATION SECTION
     st.subheader("📌 Interpretation")
