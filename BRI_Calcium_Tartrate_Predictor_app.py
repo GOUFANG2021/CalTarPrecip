@@ -55,8 +55,8 @@ st.set_page_config(layout="wide")
 st.title("🍷 Calcium Tartrate Precipitation Predictor")
 st.write("""
   The calcium tartrate predictor model assists winemakers in evaluating the risk of calcium tartrate precipitation in their wines. It utilises a streamlined set of inputs—namely pH, ethanol, calcium, tartaric acid, malic acid, and lactic acid levels—to calculate the supersaturation ratio, which reflects the chances of crystal formation.
-
-To use the model, download the data template, enter your wine’s parameters, and run the model to determine the supersaturation ratio. Additionally, a reference table is provided to help you understand the risk levels associated with the resulting ratio, to help you prevent unwanted precipitates in wine.
+  
+  To use the model, download the data template, enter your wine’s parameters, and run the model to determine the supersaturation ratio. Additionally, a reference table is provided to help you understand the risk levels associated with the resulting ratio, to help you prevent unwanted precipitates in wine.
     """)
 
 # Create two columns
@@ -84,8 +84,7 @@ with col1:
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload your wine data")
-    # uploaded_file = st.file_uploader("📥 Browse to update your data", type=["xlsx"])
-     uploaded_file = st.file_uploader("📤 Browse files to upload Your Data", type=["xlsx"])
+          uploaded_file = st.file_uploader("📤 Browse files to upload Your Data", type=["xlsx"])
 
     if uploaded_file:
         st.session_state.uploaded_data = uploaded_file  
