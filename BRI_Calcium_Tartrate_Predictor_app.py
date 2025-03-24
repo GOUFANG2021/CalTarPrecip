@@ -84,7 +84,7 @@ with col1:
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload your wine data")
-          uploaded_file = st.file_uploader("📤 Browse files to upload Your Data", type=["xlsx"])
+    uploaded_file = st.file_uploader("📤 Browse files to upload Your Data", type=["xlsx"])
 
     if uploaded_file:
         st.session_state.uploaded_data = uploaded_file  
