@@ -127,7 +127,7 @@ with col2:
     # WARNING MESSAGE
     st.warning(
         "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
-        "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
+        "If this occurs, please delete the uploaded Excel file and upload a new one with alternative data with the same format."
     )
              
     # INTERPRETATION SECTION
