@@ -84,7 +84,7 @@ with col1:
 
     # STEP 2: UPLOAD MODIFIED WINE DATA
     st.subheader("Step 2: Upload your wine data")
-    uploaded_file = st.file_uploader("📤 Browse files to upload Your Data", type=["xlsx"])
+    uploaded_file = st.file_uploader("📤 Browse files to upload your data", type=["xlsx"])
 
     if uploaded_file:
         st.session_state.uploaded_data = uploaded_file  
@@ -124,6 +124,11 @@ with col2:
     if st.session_state.simulation_results:
         for result in st.session_state.simulation_results:
             st.write(result)
+    # WARNING MESSAGE
+    st.warning(
+        "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
+        "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
+    )
              
     # INTERPRETATION SECTION
     st.subheader("📌 Interpretation")
@@ -138,8 +143,4 @@ with col2:
     if os.path.exists(indicator_path):
         st.image(indicator_path, caption=" ")
 
-    # WARNING MESSAGE
-    st.warning(
-        "⚠️ The model may not find a solution if the input data falls outside the simulation range. "
-        "If this occurs, please delete the uploaded Excel file and upload a new one with the same format."
-    )
+    
